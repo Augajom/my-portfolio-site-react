@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-
 import AboutIntro from "../components/About/AboutIntro";
 import EducationTimeline from "../components/About/EducationTimeline";
 import Interests from "../components/About/Interests";
@@ -10,51 +9,36 @@ function About() {
   const { t } = useTranslation();
 
   return (
-    <section
-      id="about"
-      className="min-h-screen flex justify-center bg-black p-4 scroll-mt-24"
-    >
-      <div className="container max-w-6xl w-full h-full bg-black text-white text-center">
-        <motion.div className="pt-10 inline-block">
-          <motion.h1
-            className="text-6xl md:text-8xl font-extrabold h-26
-                          bg-gradient-to-r from-orange-500 via-yellow-400 to-red-600 
-                          bg-clip-text text-transparent 
-                          drop-shadow-[0_0_15px_rgba(255,140,0,0.6)]"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-          >
-            {t("about.header")}
-          </motion.h1>
+    <section id="about" className="min-h-screen bg-black py-20 relative overflow-hidden">
+      <div className="absolute top-1/4 right-0 w-[300px] h-[300px] bg-blue-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+      
+      <div className="container max-w-6xl mx-auto px-6 relative z-10">
+        <motion.div 
+                   initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+                   className="text-center mb-20"
+                >
+                  <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/20 pb-2">
+                    {t("about.header")}
+                  </h1>
+                </motion.div>
 
-          <motion.div
-            className="h-1 bg-orange-500 mt-2 origin-left"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            transition={{ duration: 1.2, delay: 1 }}
-            viewport={{ once: true }}
-          />
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-1 h-full gap-6 mt-10">
+        <div className="space-y-12">
           <AboutIntro />
-          <div className="btn">
-            <button>
-              <a
-                href="/my-portfolio-site/resume_suphamethee.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                download
-                className="
-                  border border-orange-500 p-4 bg-orange-500 text-white font-extrabold text-2xl rounded-full flex justify-center items-center 
-                  hover:bg-white hover:text-orange-500 hover:scale-110 cursor-pointer transition-all duration-300"
-              >
-                {t("about.resume")}
-              </a>
-            </button>
+          
+          <div className="flex justify-center">
+            <motion.a
+              href="/my-portfolio-site/resume_suphamethee.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-orange-500 text-black font-bold rounded-full text-lg hover:bg-white transition-colors duration-300 shadow-[0_0_20px_rgba(249,115,22,0.4)]"
+            >
+              {t("about.resume")}
+            </motion.a>
           </div>
+
           <EducationTimeline />
           <Interests />
         </div>

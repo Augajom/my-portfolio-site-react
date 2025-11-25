@@ -10,7 +10,7 @@ import Projects from "./pages/Projects.jsx";
 import Experience from "./pages/Experience.jsx";
 import Contact from "./pages/Contact.jsx";
 
-//library
+// library
 import { motion, useScroll, useSpring } from "framer-motion";
 
 function App() {
@@ -22,15 +22,21 @@ function App() {
   });
 
   return (
-    <div>
-      <motion.div className="progress-bar" style={{ scaleX }} />
+    <div className="bg-black min-h-screen relative">
+      
+      <motion.div className="progress-bar fixed top-0 left-0 right-0 h-1 bg-orange-500 origin-left z-[1000]" style={{ scaleX }} />
+      
       <Navbar />
-      <Home />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Contact />
+      
+      <main className="relative z-0 flex flex-col">
+        <Home />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Contact />
+      </main>
+      
     </div>
   );
 }

@@ -1,9 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { FaYoutube } from "react-icons/fa";
-
-//image
+import { FaYoutube, FaExternalLinkAlt } from "react-icons/fa";
 import img1 from "../assets/projects/1.png";
 import img2 from "../assets/projects/2.png";
 import img3 from "../assets/projects/3.png";
@@ -13,125 +11,68 @@ import img6 from "../assets/projects/6.png";
 
 function Projects() {
   const { t } = useTranslation();
-
-  // ดึง project จาก i18n
   const projects = t("projects.items", { returnObjects: true });
-
-  // map key => object
   const projectKeys = Object.keys(projects);
 
-  // img & video
   const media = {
     p1: { img: img1, video: "https://youtu.be/H5nEBMcURt0" },
-    p2: {
-      img: img2,
-      video: "https://youtu.be/RtTKnKYdfDw?si=VG6XTcAPnn3TVfKH",
-    },
-    p3: {
-      img: img3,
-      video: "https://youtu.be/FTlZHSAH0-Q?si=t_6kKYPGXuSp1Wtl",
-    },
-    p4: {
-      img: img4,
-      video: "https://youtu.be/bLke_rMmeRM?si=snq4zvZ0KJCsCGbK",
-    },
-    p5: {
-      img: img5,
-      video: "https://youtu.be/gZ8i-XTpJQ0?si=l-b-VTFPaiLVY9Wd",
-    },
-    p6: { 
-      img: img6, 
-      video: "https://youtu.be/GuFJY_pf-BY",
-    },
+    p2: { img: img2, video: "https://youtu.be/RtTKnKYdfDw?si=VG6XTcAPnn3TVfKH" },
+    p3: { img: img3, video: "https://youtu.be/FTlZHSAH0-Q?si=t_6kKYPGXuSp1Wtl" },
+    p4: { img: img4, video: "https://youtu.be/bLke_rMmeRM?si=snq4zvZ0KJCsCGbK" },
+    p5: { img: img5, video: "https://youtu.be/gZ8i-XTpJQ0?si=l-b-VTFPaiLVY9Wd" },
+    p6: { img: img6, video: "https://youtu.be/GuFJY_pf-BY" },
   };
 
   return (
-    <section
-      id="projects"
-      className="min-h-screen flex justify-center bg-black p-4 scroll-mt-24"
-    >
-      <div className="container max-w-6xl mx-auto p-6">
-        {/* Header */}
-        <div className="text-center mb-10">
-          <motion.div className="pt-10 inline-block">
-            <motion.h1
-              className="text-6xl md:text-8xl font-extrabold h-26
-                                  bg-gradient-to-r from-orange-500 via-yellow-400 to-red-600 
-                                  bg-clip-text text-transparent
-                                  drop-shadow-[0_0_15px_rgba(255,140,0,0.6)]"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true }}
-            >
-              {t("projects.header")}
-            </motion.h1>
+    <section id="projects" className="min-h-screen bg-black py-20 relative">
+       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-900/10 via-black to-black"></div>
+       
+      <div className="container max-w-6xl mx-auto px-6 relative z-10">
+        <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-center mb-16"
+        >
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-2">{t("projects.header")}</h1>
+        </motion.div>
 
-            <motion.div
-              className="h-1 bg-orange-500 mt-2 origin-left"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ duration: 1.2, delay: 1 }}
-              viewport={{ once: true }}
-            />
-          </motion.div>
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {projectKeys.map((key, idx) => {
             const project = projects[key];
             const { img, video } = media[key] || {};
             return (
               <motion.div
                 key={idx}
-                className="bg-gray-900 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300"
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
                 viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="group bg-zinc-900/50 border border-white/10 rounded-2xl overflow-hidden hover:shadow-[0_0_30px_rgba(249,115,22,0.15)] transition-all duration-300"
               >
-                {/* Thumbnail */}
-                <img
-                  src={img}
-                  alt={project.title}
-                  className="w-full h-64 object-cover"
-                />
+                {/* Image Wrapper */}
+                <div className="relative h-64 overflow-hidden">
+                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10"></div>
+                   <img src={img} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                   
+                   {video && (
+                     <a href={video} target="_blank" rel="noreferrer" className="absolute bottom-4 right-4 z-20 bg-black/70 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-2 hover:bg-red-600 transition-colors">
+                        <FaYoutube /> Watch Demo
+                     </a>
+                   )}
+                </div>
 
-                {/* Content */}
-                <div className="p-6 flex flex-col gap-4">
-                  <h2
-                    className="text-2xl font-bold text-white"
-                    style={{ whiteSpace: "pre-line" }}
-                  >
-                    {project.title}
-                  </h2>
-                  <p className="text-gray-200">{project.description}</p>
-
-                  {/* Tech */}
+                <div className="p-6">
+                  <h2 className="text-2xl font-bold text-white mb-3 group-hover:text-orange-500 transition-colors">{project.title}</h2>
+                  <p className="text-gray-400 text-sm mb-6 line-clamp-3 leading-relaxed">{project.description}</p>
+                  
                   <div className="flex flex-wrap gap-2">
                     {project.tech.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="bg-orange-500 text-black px-3 py-1 rounded-full text-sm"
-                      >
+                      <span key={i} className="px-3 py-1 bg-white/5 border border-white/5 rounded-full text-xs text-orange-400 font-mono">
                         {tech}
                       </span>
                     ))}
                   </div>
-
-                  {/* YouTube Link */}
-                  {video && (
-                    <a
-                      href={video}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-red-500 hover:text-red-600 flex items-center gap-2 font-bold"
-                    >
-                      <FaYoutube size={24} />{" "}
-                      {t("projects.watchVideo", "Watch Video")}
-                    </a>
-                  )}
                 </div>
               </motion.div>
             );

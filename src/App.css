@@ -25,9 +25,10 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-  height: 10px;
-  background-color: #ff6900;
+  height: 5px; /* ความสูงเส้น */
+  background: #f97316; /* สีส้ม orange-500 */
   transform-origin: 0%;
-  z-index: 11;
+  z-index: 1000; /* ถ้าอยากให้ทับ Navbar */
+  /* หรือ z-index: 998; ถ้าอยากให้อยู่ใต้ Navbar */
 }
 

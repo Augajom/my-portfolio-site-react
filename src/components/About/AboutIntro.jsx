@@ -1,32 +1,31 @@
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 function AboutIntro() {
   const { t } = useTranslation();
-
   return (
-    <div id="introduction" className="bg-black p-6 rounded-lg shadow-lg">
-      <h1 className="text-4xl font-bold text-orange-500 mb-6 md:text-5xl">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="bg-white/5 border border-white/10 p-8 md:p-12 rounded-3xl backdrop-blur-sm text-center md:text-left relative overflow-hidden"
+    >
+      <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
+      
+      <h1 className="text-3xl md:text-4xl font-bold text-orange-500 mb-6">
         {t("about.intro.title")}
       </h1>
-
-      <p className="text-sm md:text-xl font-semibold text-white mb-2 md:text-2xl">
-        {t("about.intro.greeting")} <span className="text-orange-500">{t("about.intro.name")}</span>
-      </p>
-
-      <p className="text-sm md:text-xl text-white/90 mb-2 md:text-2xl" style={{whiteSpace: "pre-line"}}>
-        {t("about.intro.study")}
-      </p>
-
-      <p className="text-sm md:text-xl text-white/90 mb-2 md:text-2xl">
-        {t("about.intro.internship")}
-      </p>
-
-      <p className="text-white/80 mt-4 md:text-lg">
-        {t("about.intro.goal")}
-      </p>
-    </div>
+      <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
+        <p>
+          {t("about.intro.greeting")} <span className="text-white font-semibold">{t("about.intro.name")}</span>
+        </p>
+        <p className="whitespace-pre-line">{t("about.intro.study")}</p>
+        <p>{t("about.intro.internship")}</p>
+        <p className="text-white/60 text-base mt-4 border-l-4 border-orange-500 pl-4 italic">
+          "{t("about.intro.goal")}"
+        </p>
+      </div>
+    </motion.div>
   )
 }
-
-
-export default AboutIntro
+export default AboutIntro;

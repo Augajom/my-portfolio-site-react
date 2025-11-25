@@ -1,64 +1,49 @@
-import React from 'react'
+import React from 'react';
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-
-//icon
-import { HiArrowDown } from "react-icons/hi";
-
-//image
 import highschool from "../../assets/highschool.png";
 import university from "../../assets/university.jpg";
 
 function EducationTimeline() {
-
   const { t } = useTranslation();
-
   const timelineData = [
-    {
-      firstyear: "2019",
-      lastyear: "2022",
-      edu_institution : t("about.edu.highschool"),
-      description: t("about.edu.highschool_desc"),
-      img: highschool
-    },
-    {
-      firstyear: "2022",
-      lastyear: t("about.edu.present"),
-      edu_institution : t("about.edu.university"),
-      description: t("about.edu.university_desc"),
-      img: university
-    },
+    { year: "2019 - 2022", title: t("about.edu.highschool"), desc: t("about.edu.highschool_desc"), img: highschool },
+    { year: "2022 - " + t("about.edu.present"), title: t("about.edu.university"), desc: t("about.edu.university_desc"), img: university },
   ];
 
   return (
-    <div id="Education" className="mt-10">
-      <h1 className="text-4xl md:text-5xl font-bold text-orange-500 mb-6">{t("about.edu.header")}</h1>
-      <section className="bg-black w-full">
-      {timelineData.map((item, index) => (
-        <motion.div
-          key={index}
-          className="flex flex-col items-center text-center py-8"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-4xl font-bold mb-4 text-white">
-            {item.firstyear} - {item.lastyear}
-          </h2>
-          <img
-            src={item.img}
-            alt={item.grade}
-            className="w-128 h-96 object-cover rounded-lg mb-4"
-          />
-          <p className="text-orange-500 text-xl font-bold max-w-xl">{item.edu_institution}</p>
-          <p className="text-white text-lg max-w-xl">{item.description}</p>
-          <HiArrowDown size={40} className="text-white mt-8 animate-bounce" />
-        </motion.div>
-      ))}
-    </section>
+    <div className="mt-20">
+      <h2 className="text-3xl font-bold text-white mb-10 text-center"><span className="text-orange-500">Education</span> Journey</h2>
+      <div className="relative space-y-8">
+        {/* Vertical Line */}
+        <div className="absolute left-1/2 w-0.5 bg-gradient-to-b from-orange-500 to-transparent h-full -translate-x-1/2 hidden md:block opacity-30"></div>
+
+        {timelineData.map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className={`flex flex-col md:flex-row items-center gap-8 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+          >
+            <div className="flex-1 w-full">
+               <div className="relative group overflow-hidden rounded-2xl border border-white/10">
+                 <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                 <img src={item.img} alt={item.title} className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-700" />
+               </div>
+            </div>
+            
+            <div className="md:w-12 md:h-12 rounded-full bg-black border-4 border-orange-500 z-10 hidden md:block shadow-[0_0_20px_rgba(249,115,22,0.5)]"></div>
+            
+            <div className="flex-1 w-full text-center md:text-left bg-zinc-900/50 p-6 rounded-2xl border border-white/5">
+              <span className="text-orange-500 font-mono text-sm tracking-widest">{item.year}</span>
+              <h3 className="text-2xl font-bold text-white mt-2 mb-3">{item.title}</h3>
+              <p className="text-gray-400">{item.desc}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </div>
   )
 }
-
-export default EducationTimeline
+export default EducationTimeline;

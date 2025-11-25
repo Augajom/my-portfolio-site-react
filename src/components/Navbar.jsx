@@ -1,231 +1,146 @@
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "../lib/utils";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
   const { t, i18n } = useTranslation();
 
   const menu = ["home", "about", "skills", "projects", "experience", "contact"];
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const smoothScrollTo = (elementId) => {
+    setOpen(false);
     const element = document.getElementById(elementId);
     if (!element) return;
 
-    const navbarHeight = 120;
-    const targetPosition = element.offsetTop - navbarHeight;
+    const navbarHeight = 100;
+    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
     const duration = 1000;
     let start = null;
 
-    const step = (timestamp) => {
-      if (!start) start = timestamp;
-      const progress = timestamp - start;
-      const percentage = Math.min(progress / duration, 1);
+    const easeInOutCubic = (t) => {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    };
 
-      const easing =
-        percentage < 0.5
-          ? 2 * percentage * percentage
-          : 1 - Math.pow(-2 * percentage + 2, 2) / 2;
+    const animation = (currentTime) => {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      const progress = Math.min(timeElapsed / duration, 1);
+      const ease = easeInOutCubic(progress);
 
-      window.scrollTo(0, startPosition + distance * easing);
+      window.scrollTo(0, startPosition + distance * ease);
 
-      if (progress < duration) {
-        requestAnimationFrame(step);
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      } else {
+        setActive(elementId);
       }
     };
 
-    requestAnimationFrame(step);
+    requestAnimationFrame(animation);
   };
-
-  const handleMenuClick = (section, e) => {
-    e.preventDefault();
-    setOpen(false);
-
-    const delay = open ? 200 : 0;
-
-    setTimeout(() => {
-      smoothScrollTo(section);
-    }, delay);
-  };
-
-  useEffect(() => {
-    const sections = menu.map((id) => document.getElementById(id));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: "-50% 0px -50% 0px",
-        threshold: 0,
-      }
-    );
-    sections.forEach((section) => section && observer.observe(section));
-    return () =>
-      sections.forEach((section) => section && observer.unobserve(section));
-  }, [menu]);
 
   return (
     <motion.nav
-      className="fixed w-full bg-black z-50"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      className={cn(
+        "fixed top-4 left-0 right-0 z-[999] mx-auto w-[95%] max-w-5xl transition-all duration-500",
+        scrolled || open
+          ? "bg-black/80 backdrop-blur-md border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)] py-3"
+          : "bg-transparent py-6"
+      )}
     >
-      <div className="flex justify-between items-center text-white max-w-6xl mx-auto px-6 py-8">
+      <div className="flex justify-between items-center px-6 md:px-8">
         {/* Logo */}
-        <div className="flex space-x-2 text-lg font-bold md:text-xl">
-          <h1 className="tracking-wide">
-            {"SUPHAMETHEE".split("").map((ch, i) => (
-              <motion.span
-                key={i}
-                className="inline-block text-orange-500 hover:text-white transition-colors duration-200 cursor-pointer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {ch}
-              </motion.span>
-            ))}
-          </h1>
-
-          <h1 className="tracking-wide">
-            {"INTHARALIB".split("").map((ch, i) => (
-              <motion.span
-                key={i}
-                className="inline-block text-orange-500 hover:text-white transition-colors duration-200 cursor-pointer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {ch}
-              </motion.span>
-            ))}
-          </h1>
+        <div 
+          className="text-2xl font-bold tracking-tighter cursor-pointer text-white"
+          onClick={() => smoothScrollTo("home")}
+        >
+          S<span className="text-orange-500">.</span>AU
         </div>
 
-        {/* Menu */}
-        <ul className="hidden lg:flex gap-8 text-xl">
+        {/* Desktop Menu */}
+        <ul className="hidden lg:flex items-center gap-1 bg-white/5 rounded-full p-1 border border-white/5">
           {menu.map((section) => (
-            <motion.li
-              key={section}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <li key={section}>
               <button
-                type="button"
-                onClick={(e) => handleMenuClick(section, e)}
-                className={`duration-300 cursor-pointer bg-transparent border-none ${
+                onClick={() => smoothScrollTo(section)}
+                className={cn(
+                  "px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 relative overflow-hidden",
                   active === section
-                    ? "text-orange-500 underline border-b-2 border-orange-500"
-                    : "text-white hover:text-orange-500"
-                }`}
+                    ? "text-black bg-orange-500 shadow-lg shadow-orange-500/25"
+                    : "text-gray-400 hover:text-white hover:bg-white/10"
+                )}
               >
                 {t(`menu.${section}`)}
               </button>
-            </motion.li>
+            </li>
           ))}
         </ul>
 
-        {/* Language Switch */}
-        <div className="hidden lg:flex gap-2">
-          <motion.button
-            onClick={() => i18n.changeLanguage("en")}
-            className={`px-2 py-1 border rounded transition-colors cursor-pointer ${
-              i18n.language === "en"
-                ? "bg-orange-500 text-black border-orange-500"
-                : "text-white hover:bg-orange-500 hover:text-black"
-            }`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            EN
-          </motion.button>
-          <motion.button
-            onClick={() => i18n.changeLanguage("th")}
-            className={`px-2 py-1 border rounded transition-colors cursor-pointer ${
-              i18n.language === "th"
-                ? "bg-orange-500 text-black border-orange-500"
-                : "text-white hover:bg-orange-500 hover:text-black"
-            }`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            TH
-          </motion.button>
-        </div>
-
-        {/* Hamburger */}
-        <motion.div
-          className="lg:hidden cursor-pointer"
-          onClick={() => setOpen(!open)}
-          whileTap={{ scale: 0.9 }}
-        >
-          {open ? <HiX size={30} /> : <HiMenu size={30} />}
-        </motion.div>
-      </div>
-
-      {/* Dropdown */}
-      {open && (
-        <motion.div
-          className="lg:hidden bg-black text-white"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="flex justify-center gap-2 py-4">
-            <motion.button
+        {/* Right Side (Lang + Mobile Toggle) */}
+        <div className="flex items-center gap-4">
+          <div className="hidden md:flex gap-2 text-xs font-bold bg-white/5 p-1 rounded-lg border border-white/5">
+            <button
               onClick={() => i18n.changeLanguage("en")}
-              className={`px-2 py-1 border rounded transition-colors cursor-pointer ${
-                i18n.language === "en"
-                  ? "bg-orange-500 text-black border-orange-500"
-                  : "text-white hover:bg-orange-500 hover:text-black"
-              }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              EN
-            </motion.button>
-            <motion.button
+              className={cn("px-2 py-1 rounded transition-colors", i18n.language === "en" ? "bg-white/10 text-orange-500" : "text-gray-500 hover:text-white")}
+            >EN</button>
+            <button
               onClick={() => i18n.changeLanguage("th")}
-              className={`px-2 py-1 border rounded transition-colors cursor-pointer ${
-                i18n.language === "th"
-                  ? "bg-orange-500 text-black border-orange-500"
-                  : "text-white hover:bg-orange-500 hover:text-black"
-              }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              TH
-            </motion.button>
+              className={cn("px-2 py-1 rounded transition-colors", i18n.language === "th" ? "bg-white/10 text-orange-500" : "text-gray-500 hover:text-white")}
+            >TH</button>
           </div>
 
-          <ul className="flex flex-col items-center gap-6 text-xl pb-6">
-            {menu.map((section) => (
-              <motion.li
-                key={section}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <button
-                  type="button"
-                  className="hover:text-yellow-500 duration-300 cursor-pointer bg-transparent border-none"
-                  onClick={(e) => handleMenuClick(section, e)}
-                >
-                  {t(`menu.${section}`)}
-                </button>
-              </motion.li>
-            ))}
-          </ul>
-        </motion.div>
-      )}
+          <div className="lg:hidden text-white cursor-pointer" onClick={() => setOpen(!open)}>
+            {open ? <HiX size={28} /> : <HiMenu size={28} />}
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="lg:hidden overflow-hidden bg-transparent"
+          >
+            <ul className="flex flex-col items-center gap-6 py-8 text-lg border-t border-white/10 mt-2">
+              {menu.map((section) => (
+                <li key={section}>
+                  <button
+                    onClick={() => smoothScrollTo(section)}
+                    className={cn(
+                      "transition-colors",
+                      active === section ? "text-orange-500 font-bold" : "text-gray-400"
+                    )}
+                  >
+                    {t(`menu.${section}`)}
+                  </button>
+                </li>
+              ))}
+              <div className="flex gap-4 pt-4">
+                 <button onClick={() => i18n.changeLanguage("en")} className={cn(i18n.language === "en" ? "text-orange-500" : "text-gray-500")}>EN</button>
+                 <button onClick={() => i18n.changeLanguage("th")} className={cn(i18n.language === "th" ? "text-orange-500" : "text-gray-500")}>TH</button>
+              </div>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }
