@@ -8,6 +8,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+  const [isClicking, setIsClicking] = useState(false); 
   const { t, i18n } = useTranslation();
 
   const menu = ["home", "about", "skills", "projects", "experience", "contact"];
@@ -18,10 +19,46 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isClicking) return;
+
+    const sections = menu.map((id) => document.getElementById(id));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "-40% 0px -40% 0px", 
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        if (section) observer.unobserve(section);
+      });
+    };
+  }, [menu, isClicking]);
+
   const smoothScrollTo = (elementId) => {
     setOpen(false);
+    setIsClicking(true);
+    setActive(elementId);
+
     const element = document.getElementById(elementId);
-    if (!element) return;
+    if (!element) {
+        setIsClicking(false);
+        return;
+    }
 
     const navbarHeight = 100;
     const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
@@ -45,7 +82,7 @@ function Navbar() {
       if (timeElapsed < duration) {
         requestAnimationFrame(animation);
       } else {
-        setActive(elementId);
+        setIsClicking(false); 
       }
     };
 
@@ -57,7 +94,7 @@ function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       className={cn(
-        "fixed top-4 left-0 right-0 z-[999] mx-auto w-[95%] max-w-5xl transition-all duration-500",
+        "fixed top-4 left-0 right-0 z-[999] mx-auto w-[95%] max-w-5xl rounded-full transition-all duration-500",
         scrolled || open
           ? "bg-black/80 backdrop-blur-md border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)] py-3"
           : "bg-transparent py-6"
