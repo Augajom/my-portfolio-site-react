@@ -10,7 +10,7 @@ function About() {
 
   return (
     <section id="about" className="min-h-screen bg-black py-20 relative overflow-hidden">
-      <div className="absolute top-1/4 right-0 w-[300px] h-[300px] bg-blue-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-zinc-900 to-black pointer-events-none"></div>
       
       <div className="container max-w-6xl mx-auto px-6 relative z-10">
         <motion.div 

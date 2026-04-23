@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
-import { FaGithub, FaFacebook } from "react-icons/fa";
+import { FaGithub, FaFacebook, FaLine } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
 import { SiGmail } from "react-icons/si";
 import { useTranslation } from "react-i18next";
@@ -65,7 +65,8 @@ function Home() {
                 { Icon: FaGithub, href: "https://github.com/Augajom" },
                 { Icon: SiGmail, href: "mailto:suphamethee.au@gmail.com" },
                 { Icon: FaFacebook, href: "https://www.facebook.com/suphamethee.au/" },
-                { Icon: RiInstagramFill, href: "https://www.instagram.com/sp_rea1s/" }
+                { Icon: FaLine, href: "https://line.me/ti/p/~chonmaneechonmanee" },
+                { Icon: RiInstagramFill, href: "https://www.instagram.com/sp_rea1s/" },
               ].map(({ Icon, href }, idx) => (
                 <motion.a
                   key={idx}

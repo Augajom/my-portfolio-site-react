@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaFacebook } from "react-icons/fa";
+import { FaGithub, FaFacebook, FaLine } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
 import { SiGmail } from "react-icons/si";
 import { IoLocation } from "react-icons/io5";
@@ -24,7 +24,7 @@ function Contact() {
 
   return (
     <section id="contact" className="min-h-screen flex items-center justify-center bg-black py-20 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900 to-black"></div>
+      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-zinc-900 to-black pointer-events-none"></div>
       
       <div className="container max-w-6xl mx-auto px-6 relative z-10 text-center">
         <motion.div 
@@ -55,6 +55,7 @@ function Contact() {
           <SocialBtn href="https://github.com/Augajom" Icon={FaGithub} />
           <SocialBtn href="mailto:suphamethee.au@gmail.com" Icon={SiGmail} />
           <SocialBtn href="https://www.facebook.com/suphamethee.au/" Icon={FaFacebook} />
+          <SocialBtn href="https://line.me/ti/p/~chonmaneechonmanee" Icon={FaLine} />
           <SocialBtn href="https://www.instagram.com/sp_rea1s/" Icon={RiInstagramFill} />
         </div>
         

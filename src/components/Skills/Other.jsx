@@ -44,7 +44,7 @@ function Other() {
   return (
     <div className="border-l border-white/10 pl-4 md:pl-10 relative mt-10">
       {/* Sidebar Label */}
-      <h2 className="text-4xl font-bold text-white mb-10 opacity-20 absolute -left-4 -top-6 rotate-90 origin-bottom-left md:block hidden tracking-widest">
+      <h2 className="text-4xl font-bold text-white mb-10 opacity-20 absolute -left-2 -top-10 rotate-90 origin-bottom-left md:block hidden tracking-widest">
         OTHER
       </h2>
 

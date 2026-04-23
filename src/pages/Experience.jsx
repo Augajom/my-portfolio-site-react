@@ -10,19 +10,11 @@ import "yet-another-react-lightbox/styles.css";
 import { useTranslation } from "react-i18next";
 
 //image imports
-import img1 from "../assets/experiences/1.png";
+import img1 from "../assets/experiences/1.jpg";
 import img2 from "../assets/experiences/2.png";
-import img3 from "../assets/experiences/3.png";
-import img4 from "../assets/experiences/4.png";
+import img3 from "../assets/experiences/3.jpg";
+import img4 from "../assets/experiences/4.jpg";
 import img5 from "../assets/experiences/5.png";
-import img6 from "../assets/experiences/6.png";
-import img7 from "../assets/experiences/7.png";
-import img8 from "../assets/experiences/8.png";
-import img9 from "../assets/experiences/9.jpg";
-import img10 from "../assets/experiences/10.jpg";
-import img11 from "../assets/experiences/11.jpg";
-import img12 from "../assets/experiences/12.jpg";
-import img13 from "../assets/experiences/13.jpg";
 
 function Experience() {
   const { t } = useTranslation();
@@ -35,14 +27,14 @@ function Experience() {
   
   const media = {
     exp1: [
-      img1, img2, img3, img4, img5, img6, img7, 
-      img8, img9, img10, img11, img12, img13,
+      img1, img2, img3, img4, img5
     ],
   };
 
   return (
     <section id="experience" className="min-h-screen bg-black py-20 relative">
-      <div className="container max-w-6xl mx-auto px-6">
+      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-zinc-900 to-black pointer-events-none"></div>
+      <div className="relative container max-w-6xl mx-auto px-6">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -71,7 +63,7 @@ function Experience() {
                   {/* Slider Section */}
                   <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                       <Swiper
-                        modules={[Autoplay, Pagination, Navigation]}
+                        modules={[Pagination, Navigation]}
                         spaceBetween={10} slidesPerView={1} loop autoplay={{ delay: 5000 }}
                         pagination={{ clickable: true }} navigation={true}
                         className="w-full aspect-video"

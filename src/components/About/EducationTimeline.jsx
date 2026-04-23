@@ -8,7 +8,7 @@ function EducationTimeline() {
   const { t } = useTranslation();
   const timelineData = [
     { year: "2019 - 2022", title: t("about.edu.highschool"), desc: t("about.edu.highschool_desc"), img: highschool },
-    { year: "2022 - " + t("about.edu.present"), title: t("about.edu.university"), desc: t("about.edu.university_desc"), img: university },
+    { year: "2022 - 2026", title: t("about.edu.university"), desc: t("about.edu.university_desc"), img: university },
   ];
 
   return (

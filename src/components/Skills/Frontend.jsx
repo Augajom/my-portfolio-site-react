@@ -70,8 +70,8 @@ function Frontend() {
   };
 
   return (
-    <div className="border-l border-white/10 pl-4 md:pl-10">
-      <h2 className="text-4xl font-bold text-white mb-10 opacity-20 absolute -left-4 -top-10 rotate-90 origin-bottom-left md:block hidden">
+    <div className="border-l border-white/10 pl-4 md:pl-10 relative">
+      <h2 className="text-4xl font-bold text-white mb-10 opacity-20 absolute -left-2 -top-10 rotate-90 origin-bottom-left md:block hidden tracking-widest">
         FRONTEND
       </h2>
       {renderSection("skills.frontend.framework", data.framework)}

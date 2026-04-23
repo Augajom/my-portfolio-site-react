@@ -18,7 +18,7 @@
             "Backend Developer",
             "Fullstack Developer"
         ],
-        "desc": "Aspiring Fullstack Developer Intern passionate about learning new technologies, growing my skills, and contributing to meaningful projects"
+        "desc": "Ready to fully apply my knowledge and technical skills to real-world projects, while continuously developing myself and growing as a software engineer."
     },
     "about": {
         "header": "About Me",
@@ -27,17 +27,16 @@
             "title": "Introduction",
             "greeting": "Hi! My name is",
             "name": "Suphamethee Intharalib (Au)",
-            "study": "I am currently studying Computer Engineering at \nMae Fah Luang University.",
-            "internship": "I am seeking an internship as a Fullstack Developer.",
-            "goal": "The goal of this internship is to gain hands-on experience, understand real-world workflows, and improve my technical skills."
+            "study": "A recent Computer Engineering graduate from Mae Fah Luang University.",
+            "internship": "I am actively seeking a full-time role as a Full-Stack Developer.",
+            "goal": "Equipped with hands-on experience in building scalable web applications and secure system architectures, \nI am ready to deliver impactful results and continue growing alongside a forward-thinking team."
         },
         "edu": {
             "header": "Education",
             "highschool": "Sriracha High School",
             "highschool_desc": "Science, Mathematics, and Computer Engineering Track",
             "university": "Mae Fah Luang University",
-            "university_desc": "Computer Engineering",
-            "present": "Present"
+            "university_desc": "Computer Engineering"
         },
         "interests": {
             "header": "Interests & Soft Skills",
@@ -125,9 +124,13 @@
                     "title": "Express.js",
                     "level": "Advanced"
                 },
+                "Django": {
+                    "title": "Django",
+                    "level": "Elementary"
+                },
                 "Google OAuth2": {
                     "title": "Google OAuth2",
-                    "level": "Elementary"
+                    "level": "Intermediate"
                 },
                 "JWT": {
                     "title": "JWT",
@@ -144,8 +147,16 @@
                     "title": "MySQL",
                     "level": "Advanced"
                 },
+                "PostgreSQL": {
+                    "title": "PostgreSQL",
+                    "level": "Beginner"
+                },
                 "MongoDB": {
                     "title": "MongoDB",
+                    "level": "Intermediate"
+                },
+                "Firebase": {
+                    "title": "Firebase",
                     "level": "Beginner"
                 }
             }
@@ -166,6 +177,10 @@
                     "title": "GitHub",
                     "level": "Intermediate"
                 },
+                "GitLab": {
+                    "title": "GitLab",
+                    "level": "Intermediate"
+                },
                 "Docker": {
                     "title": "Docker",
                     "level": "Intermediate"
@@ -173,6 +188,10 @@
                 "Docker Compose": {
                     "title": "Docker Compose",
                     "level": "Intermediate"
+                },
+                "Proxmox": {
+                    "title": "Proxmox",
+                    "level": "Elementary"
                 },
                 "Linux": {
                     "title": "Linux",
@@ -263,13 +282,34 @@
         "header": "Projects",
         "items": {
             "p1": {
+                "title": "Restaurant System",
+                "description": "Developed a website for Restaurant system.",
+                "tech": [
+                    "React.js", "Node.js", "MongoDB", "Docker", "Docker Compose", "Nginx"
+                ]
+            },
+            "p2": {
+                "title": "Project Proposal Submission System",
+                "description": "Developed a website for proposal submission system.",
+                "tech": [
+                    "Vue.js", "Node.js", "MySQL", "Docker", "Docker Compose", "Nginx"
+                ]
+            },
+            "p3": {
+                "title": "Hewkad Website",
+                "description": "Developed a website for senior project.",
+                "tech": [
+                    "React.js", "Node.js", "MySQL", "Docker", "Docker Compose", "Nginx"
+                ]
+            },
+            "p4": {
                 "title": "First Project In My Life",
                 "description": "Developed a website for basic login, register system.",
                 "tech": [
                     "html5"
                 ]
             },
-            "p2": {
+            "p5": {
                 "title": "First CSS Project",
                 "description": "My first web project: created a simple login/register page to practice front-end skills.",
                 "tech": [
@@ -277,7 +317,7 @@
                     "CSS"
                 ]
             },
-            "p3": {
+            "p6": {
                 "title": "First JavaScript Project",
                 "description": "Built a simple calculator to practice JavaScript fundamentals and DOM manipulation.",
                 "tech": [
@@ -287,7 +327,7 @@
                     "DOM"
                 ]
             },
-            "p4": {
+            "p7": {
                 "title": "First Array-Based Project",
                 "description": "Created a website that stores and manages data in an array, dynamically displaying content on the page.",
                 "tech": [
@@ -296,7 +336,7 @@
                     "Javascript"
                 ]
             },
-            "p5": {
+            "p8": {
                 "title": "First JSON And Bootstrap Project",
                 "description": "Experimented with storing data in JSON and creating a responsive layout using Bootstrap for the first time.",
                 "tech": [
@@ -307,7 +347,7 @@
                     "Bootstarp5"
                 ]
             },
-            "p6": {
+            "p9": {
                 "title": "Borrow a Book System",
                 "description": "Team project developing a web-based borrow a book system with secure login, approval workflow, and admin dashboard for managing borrow.",
                 "tech": [
@@ -326,10 +366,10 @@
         "header": "Experience",
         "items": {
             "exp1": {
-                "title": "Web Developer \nThe Center for Academic Services",
-                "company": "Mae Fah Luang University",
-                "period": "Feb 2025 - Jul 2025",
-                "description": "Worked as a Fullstack Web Developer at the Center for Academic Services, Mae Fah Luang University. Designed and developed a comprehensive web application from scratch, implementing: \n\n• Role-Based Access Control (RBAC) for four main roles: Project Head, Dean, Admin, and Board, with page-level and approval permissions. \n• Google OAuth login with session management, email verification, and role-based access control. \n• Multi-page project proposal forms with AutoSave and file attachment support (PDF, Word, etc.) stored on the server. \n• Cost-benefit analysis forms calculating total cost, profit, per capita, and efficiency percentages automatically.  \n• Multi-step workflow approval system reflecting current status and rejection reasons for each role. \n• Timeline tracking showing approval history with approver names, dates, and status, visible according to user roles. \n• Export functionality for PDF and Excel reports for committee submission and record-keeping. \n• User management with bulk import from Excel, including add, edit, delete, and permission assignment. \n• Dashboard displaying project statuses, filters by name/status/department, and overall revenue and expenses. \n• Automated proposal submission opening/closing based on schedule (node-cron). \n• Deployment using Docker, Docker Compose, Nginx, Linux, with reverse proxy configuration. \n• Real-time user control and permission guarding, including page/feature access, URL protection, and role-based menu visibility (middlewares). \n• Automated email notifications using Nodemailer. \n\nImplemented responsive UI/UX using Vue.js, HTML, CSS, and Bootstrap, and integrated backend functionalities with Node.js, Express, OAuth2, and MySQL."
+                "title": "Software Engineer Intern",
+                "company": "Perceptra",
+                "period": "Jan 2026 - Apr 2026",
+                "description": "Worked as a Software Engineer Intern, focusing on system architecture improvement, DevSecOps, and deployment workflows. \n\n• Integrated Renovate Bot for automated vulnerability scanning and dependency updates. \n• Developed hardened container images and generated SBOM (Software Bill of Materials) on Harbor, including diff analysis to ensure security compliance. \n• Upgraded and migrated the core system architecture from Microservices to a unified Platform. \n• Developed a 'Golden Image' deployment strategy for Virtual Machines (VMs) and bootable drives using Proxmox. \n• Enhanced system stability by writing Unit Tests for every function and resolving bugs identified during pipeline executions. \n• Collaborated with the team on branch merging and successfully integrated the new UI version into the updated system environment. \n\nTech Stack: Python, Django, PostgreSQL, Docker, Docker Compose, Nginx, Proxmox VE, VMs, Linux."
             }
         }
     },
@@ -342,11 +382,11 @@
             },
             "email": {
                 "title": "Email",
-                "desc": "suphamethee.au@gmail.com\n6531501120@lamduan.mfu.ac.th"
+                "desc": "suphamethee.au@gmail.com"
             },
             "phone": {
                 "title": "Call Now",
-                "desc": "+66 83 834 4340"
+                "desc": "+66 838 344 340"
             }
         }
     }

@@ -15,11 +15,11 @@ function AboutIntro() {
       <h1 className="text-3xl md:text-4xl font-bold text-orange-500 mb-6">
         {t("about.intro.title")}
       </h1>
-      <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
+      <div className="space-y-4 text-gray-300 text-lg leading-relaxed whitespace-pre-line">
         <p>
           {t("about.intro.greeting")} <span className="text-white font-semibold">{t("about.intro.name")}</span>
         </p>
-        <p className="whitespace-pre-line">{t("about.intro.study")}</p>
+        <p>{t("about.intro.study")}</p>
         <p>{t("about.intro.internship")}</p>
         <p className="text-white/60 text-base mt-4 border-l-4 border-orange-500 pl-4 italic">
           "{t("about.intro.goal")}"

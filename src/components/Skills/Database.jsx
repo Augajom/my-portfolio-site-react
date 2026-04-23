@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 // icons
-import { SiMysql, SiMongodb } from "react-icons/si";
+import { SiMysql, SiMongodb, SiFirebase } from "react-icons/si";
+import { BiLogoPostgresql } from "react-icons/bi";
 
 const SkillCard = ({ icon, title, level, delay }) => (
   <motion.div
@@ -33,7 +34,6 @@ function Database() {
         <span className="w-1.5 h-6 bg-orange-500 rounded-full"></span>
         {t(titleKey)}
       </h3>
-      {/* ใช้ Grid เดียวกับไฟล์อื่น เพื่อให้ขนาดการ์ดเท่ากัน */}
       <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {items.map((item, idx) => (
           <SkillCard
@@ -49,14 +49,20 @@ function Database() {
   );
 
   const data = {
-    SQL: [{ icon: <SiMysql />, key: "MySQL" }],
-    NoSQL: [{ icon: <SiMongodb />, key: "MongoDB" }],
+    SQL: [
+      { icon: <SiMysql />, key: "MySQL" },
+      { icon: <BiLogoPostgresql />, key: "PostgreSQL" }
+    ],
+    NoSQL: [
+      { icon: <SiMongodb />, key: "MongoDB" },
+      { icon: <SiFirebase />, key: "Firebase" }
+    ],
   };
 
   return (
     <div className="border-l border-white/10 pl-4 md:pl-10 relative mt-10">
       {/* Sidebar Label ตกแต่ง */}
-      <h2 className="text-4xl font-bold text-white mb-10 opacity-20 absolute -left-4 -top-6 rotate-90 origin-bottom-left md:block hidden tracking-widest">
+      <h2 className="text-4xl font-bold text-white mb-10 opacity-20 absolute -left-2 -top-10 rotate-90 origin-bottom-left md:block hidden tracking-widest">
         DATABASE
       </h2>
 

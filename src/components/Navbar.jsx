@@ -11,7 +11,7 @@ function Navbar() {
   const [isClicking, setIsClicking] = useState(false); 
   const { t, i18n } = useTranslation();
 
-  const menu = ["home", "about", "skills", "projects", "experience", "contact"];
+  const menu = ["home", "about", "skills", "experience", "projects", "contact"];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -60,7 +60,7 @@ function Navbar() {
         return;
     }
 
-    const navbarHeight = 100;
+    const navbarHeight = 70;
     const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
@@ -94,10 +94,10 @@ function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       className={cn(
-        "fixed top-4 left-0 right-0 z-[999] mx-auto w-[95%] max-w-5xl rounded-full transition-all duration-500",
+        "fixed top-4 left-0 right-0 z-[999] mx-auto w-[95%] max-w-5xl rounded-lg transition-all duration-500",
         scrolled || open
           ? "bg-black/80 backdrop-blur-md border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)] py-3"
-          : "bg-transparent py-6"
+          : "bg-black/80 backdrop-blur-md border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)] py-3"
       )}
     >
       <div className="flex justify-between items-center px-6 md:px-8">

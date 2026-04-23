@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 // icons
 import { FaNodeJs } from "react-icons/fa";
-import { SiExpress } from "react-icons/si";
+import { SiExpress, SiDjango } from "react-icons/si";
 import { TbBrandOauth } from "react-icons/tb";
 import { FaKeycdn } from "react-icons/fa6";
 
@@ -54,6 +54,7 @@ function Backend() {
     backend: [
       { icon: <FaNodeJs />, key: "Node.js" },
       { icon: <SiExpress />, key: "Express.js" },
+      { icon: <SiDjango />, key: "Django" },
     ],
     authentication: [
       { icon: <TbBrandOauth />, key: "Google OAuth2" },
@@ -63,8 +64,7 @@ function Backend() {
 
   return (
     <div className="border-l border-white/10 pl-4 md:pl-10 relative">
-      {/* Label ด้านข้างสำหรับตกแต่ง */}
-      <h2 className="text-4xl font-bold text-white mb-10 opacity-20 absolute -left-4 -top-6 rotate-90 origin-bottom-left md:block hidden tracking-widest">
+      <h2 className="text-4xl font-bold text-white mb-10 opacity-20 absolute -left-2 -top-10 rotate-90 origin-bottom-left md:block hidden tracking-widest">
         BACKEND
       </h2>
 

@@ -2,12 +2,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { FaYoutube, FaExternalLinkAlt } from "react-icons/fa";
-import img1 from "../assets/projects/1.png";
-import img2 from "../assets/projects/2.png";
-import img3 from "../assets/projects/3.png";
-import img4 from "../assets/projects/4.png";
-import img5 from "../assets/projects/5.png";
-import img6 from "../assets/projects/6.png";
+import img1 from "../assets/projects/1.webp";
+import img2 from "../assets/projects/2.webp";
+import img3 from "../assets/projects/3.webp";
+import img4 from "../assets/projects/4.webp";
+import img5 from "../assets/projects/5.webp";
+import img6 from "../assets/projects/6.webp";
+import img7 from "../assets/projects/7.webp";
+import img8 from "../assets/projects/8.webp";
+import img9 from "../assets/projects/9.webp";
 
 function Projects() {
   const { t } = useTranslation();
@@ -15,17 +18,20 @@ function Projects() {
   const projectKeys = Object.keys(projects);
 
   const media = {
-    p1: { img: img1, video: "https://youtu.be/H5nEBMcURt0" },
-    p2: { img: img2, video: "https://youtu.be/RtTKnKYdfDw?si=VG6XTcAPnn3TVfKH" },
-    p3: { img: img3, video: "https://youtu.be/FTlZHSAH0-Q?si=t_6kKYPGXuSp1Wtl" },
-    p4: { img: img4, video: "https://youtu.be/bLke_rMmeRM?si=snq4zvZ0KJCsCGbK" },
-    p5: { img: img5, video: "https://youtu.be/gZ8i-XTpJQ0?si=l-b-VTFPaiLVY9Wd" },
-    p6: { img: img6, video: "https://youtu.be/GuFJY_pf-BY" },
+    p1: { img: img1, video: "https://youtu.be/pS8VqLD_hNE?si=9vhG52mza4TjFfsd" },
+    p2: { img: img2, video: "https://youtu.be/Ko_2m_PpbRE?si=p4nxobFR9IJE2aE8" },
+    p3: { img: img3, video: "https://youtu.be/NWeR8IRONBU?si=2ztnl1_DQP10vvCf" },
+    p4: { img: img4, video: "https://youtu.be/H5nEBMcURt0" },
+    p5: { img: img5, video: "https://youtu.be/RtTKnKYdfDw?si=VG6XTcAPnn3TVfKH" },
+    p6: { img: img6, video: "https://youtu.be/FTlZHSAH0-Q?si=t_6kKYPGXuSp1Wtl" },
+    p7: { img: img7, video: "https://youtu.be/bLke_rMmeRM?si=snq4zvZ0KJCsCGbK" },
+    p8: { img: img8, video: "https://youtu.be/gZ8i-XTpJQ0?si=l-b-VTFPaiLVY9Wd" },
+    p9: { img: img9, video: "https://youtu.be/GuFJY_pf-BY" },
   };
 
   return (
     <section id="projects" className="min-h-screen bg-black py-20 relative">
-       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-900/10 via-black to-black"></div>
+       <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-zinc-900 to-black pointer-events-none"></div>
        
       <div className="container max-w-6xl mx-auto px-6 relative z-10">
         <motion.div 
@@ -36,7 +42,7 @@ function Projects() {
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-2">{t("projects.header")}</h1>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {projectKeys.map((key, idx) => {
             const project = projects[key];
             const { img, video } = media[key] || {};
