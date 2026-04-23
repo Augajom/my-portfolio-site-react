@@ -27,7 +27,7 @@ function About() {
           
           <div className="flex justify-center">
             <motion.a
-              href="/my-portfolio-site/resume_suphamethee.pdf"
+              href="/my-portfolio-site-react/resume_suphamethee.pdf"
               target="_blank"
               rel="noopener noreferrer"
               download
