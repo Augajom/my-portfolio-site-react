@@ -282,14 +282,14 @@
         "header": "Projects",
         "items": {
             "p1": {
-                "title": "Restaurant System",
-                "description": "Developed a website for Restaurant system.",
+                "title": "Wanasom Food Restaurant System",
+                "description": "Developed a website for Wanasom Food Restaurant system.",
                 "tech": [
                     "React.js", "Node.js", "MongoDB", "Docker", "Docker Compose", "Nginx"
                 ]
             },
             "p2": {
-                "title": "Project Proposal Submission System",
+                "title": "Project Proposal Submission System | CAS",
                 "description": "Developed a website for proposal submission system.",
                 "tech": [
                     "Vue.js", "Node.js", "MySQL", "Docker", "Docker Compose", "Nginx"
